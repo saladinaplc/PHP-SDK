@@ -1,12 +1,12 @@
 {
-    "name": "bongatech/api",
+    "name": "BongaTech/Api",
     "type": "library",
     "description": "PHP Bongatech API",
     "keywords": [
         "api",
         "bongatech"
     ],
-    "homepage": "https://github.com/BongaTech/api",
+    "homepage": "https://github.com/BongaTech/PHP-SDK",
     "license": "MIT",
     "authors": [
         {
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "BongaTech\\Api\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor\\:package_name\\": "tests"
+            "BongaTech\\Api\\": "tests"
         }
     },
     "scripts": {
