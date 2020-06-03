@@ -1,5 +1,5 @@
 {
-    "name": "BongaTech/Api",
+    "name": "bongatech/api",
     "type": "library",
     "description": "PHP Bongatech API",
     "keywords": [
@@ -12,12 +12,13 @@
         {
             "name": "Makamu Evans",
             "email": "makamuevans@gmail.com",
-            "homepage": "makamuevans.co.ke",
+            "homepage": "https://makamuevans.co.ke",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : "~7.2"
+        "php" : "~7.2",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "phpunit/phpunit" : ">=8.0",
