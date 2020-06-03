@@ -55,18 +55,13 @@ abstract class BongaHandler
         ];
     }
 
-    protected function constructBody(): string
-    {
-        return json_encode($this->sms);
-    }
-
     protected function sendRequest()
     {
         $client = new Client();
         try {
             $results = $client->post(self::BASE_URL . $this->uri,
                 [
-                    RequestOptions::JSON => $this->constructBody(),
+                    RequestOptions::JSON => $this->sms,
                     RequestOptions::HEADERS => $this->constructHeader()
                 ]);
             return json_decode($results->getBody(), true);
