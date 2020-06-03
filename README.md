@@ -1,17 +1,14 @@
-# BongaTech PHP Api
+# Official BongaTech PHP Api SDK
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 This PHP SDK provides convenient methods for consuming BongaTech API.
 
 ## Documentation
 
-BongaTech API Documentation can be found [here]: https://bulk.bongatech.co.ke/docs
+BongaTech API Documentation can be found at https://bulk.bongatech.co.ke/docs
 
 
 ## Install
@@ -19,15 +16,52 @@ BongaTech API Documentation can be found [here]: https://bulk.bongatech.co.ke/do
 Via Composer
 
 ``` bash
-$ composer require BongaTech/Api
+$ composer require bongatech/Api
 ```
 
 ## Usage
 
+### Sending a Message
+
 ``` php
-$skeleton = new BongaTech\Api();
-echo $skeleton->echoPhrase('Hello, League!');
+<?php
+require_once '../vendor/autoload.php';
+
+use BongaTech\Api\BongaTech;
+use BongaTech\Api\Models\Sms;
+
+$instance = new BongaTech("TOKEN_string");
+
+//create an Sms Object
+$sms= new Sms("BONGATECH", "0716079675", "Test Message 1", "101");
+
+//send Sms object
+$response = $instance->sendSMS($sms);
+
+var_dump($response);
+
 ```
+
+### Sending Messages in batches
+
+``` php
+<?php
+require_once '../vendor/autoload.php';
+
+use BongaTech\Api\BongaTech;
+use BongaTech\Api\Models\Sms;
+
+$instance = new BongaTech("TOKEN_string");
+
+//create multiple Sms Object(s)
+$sms1= new Sms("BONGATECH", "0716079675", "Test Message 1", "101");
+$sms2 = new Sms("BizTxt", "0716079675", "Test Message 2", "102");
+
+//send Sms object
+$response = $instance->sendBatchSMS($sms1, $sms2);
+
+var_dump($response);
+
 
 ## Change log
 
@@ -58,15 +92,9 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/BongaTech/Api.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/BongaTech/Api/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/BongaTech/Api.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/BongaTech/Api.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/BongaTech/Api.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/BongaTech/Api
-[link-travis]: https://travis-ci.org/BongaTech/Api
-[link-scrutinizer]: https://scrutinizer-ci.com/g/BongaTech/Api/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/BongaTech/Api
-[link-downloads]: https://packagist.org/packages/BongaTech/Api
+[link-packagist]: https://packagist.org/packages/bongatech/api
+[link-downloads]: https://packagist.org/packages/bongatech/api
 [link-author]: https://github.com/MakamuEvans
 [link-contributors]: ../../contributors

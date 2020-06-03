@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use BongaTech\Api\BongaTech;
 use BongaTech\Api\Models\Sms;
@@ -19,6 +19,7 @@ use BongaTech\Api\Models\Sms;
     |
     */
 
+//prefill `TOKEN_string` with your Token
 $instance = new BongaTech("TOKEN_string");
 
 //create multiple Sms Object(s)
