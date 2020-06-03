@@ -13,19 +13,30 @@ BongaTech API Documentation can be found at https://bulk.bongatech.co.ke/docs
 
 ## Install
 
-Via Composer
+Via Composer (recommended)
 
 ``` bash
-$ composer require bongatech/Api
+$ composer require bongatech/api
+```
+
+Via Download
+
+``` bash
+1. Clone or Download this Repo.
+2. run `composer install` in the root of the project
 ```
 
 ## Usage
 
 ### Sending a Message
 
+Detailed samples can be obtained from [examples folder](examples)
+
 ``` php
 <?php
-require_once '../vendor/autoload.php';
+//include if your project wasent initialized with composer prior to downloading.
+//ensure path to vendor is correct
+require_once 'vendor/autoload.php';
 
 use BongaTech\Api\BongaTech;
 use BongaTech\Api\Models\Sms;
@@ -46,7 +57,9 @@ var_dump($response);
 
 ``` php
 <?php
-require_once '../vendor/autoload.php';
+//include if your project wasent initialized with composer prior to downloading.
+//ensure path to vendor is correct
+require_once 'vendor/autoload.php';
 
 use BongaTech\Api\BongaTech;
 use BongaTech\Api\Models\Sms;
@@ -62,6 +75,7 @@ $response = $instance->sendBatchSMS($sms1, $sms2);
 
 var_dump($response);
 
+```
 
 ## Change log
 

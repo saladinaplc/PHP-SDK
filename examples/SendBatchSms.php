@@ -19,10 +19,22 @@ use BongaTech\Api\Models\Sms;
     |
     */
 
-//prefill `TOKEN_string` with your Token
-$instance = new BongaTech("TOKEN_string");
+$token = "Token_string"; //replace with your Token from the portal
+$version = "v1"; //DONT change unless you are using a different version
+$instance = new BongaTech($token, $version);
 
 //create multiple Sms Object(s)
+/*
+ * SMS Object parameters are:
+ * sender(required)
+ * phone(required)
+ * message(required)
+ * correlator(optional)
+ * link_id(optional)
+ * endpoint(optional)
+ *
+ * Consult API Document for detailed explanation
+ */
 $sms1= new Sms("BONGATECH", "0716079675", "Test Message 1", "101");
 $sms2 = new Sms("BizTxt", "0716079675", "Test Message 2", "102");
 
