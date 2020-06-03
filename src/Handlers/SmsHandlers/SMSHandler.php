@@ -13,7 +13,8 @@ trait SMSHandler
      * @param Sms $sms
      * @return mixed|string
      */
-    public function sendSMS(Sms $sms){
+    public function sendSMS(Sms $sms)
+    {
         $uri = "$this->version/send-sms";
         try {
             $message = [$sms];

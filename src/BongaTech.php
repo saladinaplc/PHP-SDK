@@ -4,11 +4,12 @@
 namespace BongaTech\Api;
 
 
+use BongaTech\Api\Handlers\AccountHandlers\AccountHandler;
 use BongaTech\Api\Handlers\SmsHandlers\SMSHandler;
 
 class BongaTech
 {
-    use SMSHandler;
+    use SMSHandler, AccountHandler;
 
 
     /**

@@ -3,7 +3,6 @@
 
 namespace BongaTech\Api\Handlers;
 
-
 use BongaTech\Api\Exceptions\BongaException;
 use BongaTech\Api\Models\Sms;
 use GuzzleHttp\Client;
@@ -15,34 +14,46 @@ abstract class BongaHandler
 {
     const BASE_URL = "https://bulk.bongatech.co.ke/api/";
 
+    const METHOD_POST = "sendPostRequest";
+    const METHOD_GET = "sendGetRequest";
+
     /**
      * @var string
      */
     protected $token;
 
-    protected $sms;
+    protected $data;
 
     protected $uri;
+
+    protected $method;
 
     /**
      * BongaHandler constructor.
      * @param string $token
-     * @param $sms
+     * @param $data
      * @param $uri
      * @throws \Exception
      */
-    public function __construct(string $token, string $uri, Sms ...$sms)
+    public function __construct(string $token, string $uri, $data = null)
     {
         $this->token = $token;
-        $this->sms = $sms;
+        $this->data = $data;
         $this->uri = $uri;
     }
 
-    public function process(){
-        foreach ($this->sms as $index=>$message){
+    protected function getMethod()
+    {
+        return self::METHOD_POST;
+    }
+
+    public function process()
+    {
+        foreach ($this->data as $index => $message) {
             $this->validate($index, $message);
         }
-        return $this->sendRequest();
+        $method = $this->getMethod();
+        return $this->$method();
     }
 
 
@@ -55,15 +66,33 @@ abstract class BongaHandler
         ];
     }
 
-    protected function sendRequest()
+    protected function sendPostRequest()
     {
         $client = new Client();
         try {
-            $results = $client->post(self::BASE_URL . $this->uri,
+            $results = $client->post(
+                self::BASE_URL . $this->uri,
                 [
-                    RequestOptions::JSON => $this->sms,
+                    RequestOptions::JSON => $this->data,
                     RequestOptions::HEADERS => $this->constructHeader()
-                ]);
+                ]
+            );
+            return json_decode($results->getBody(), true);
+        } catch (RequestException $exception) {
+            return json_decode($exception->getResponse()->getBody(), true);
+        }
+    }
+
+    protected function sendGetRequest()
+    {
+        $client = new Client();
+        try {
+            $results = $client->get(
+                self::BASE_URL . $this->uri,
+                [
+                    RequestOptions::HEADERS => $this->constructHeader()
+                ]
+            );
             return json_decode($results->getBody(), true);
         } catch (RequestException $exception) {
             return json_decode($exception->getResponse()->getBody(), true);
@@ -72,11 +101,14 @@ abstract class BongaHandler
 
     protected function validate(int $index, Sms $message)
     {
-        if (!$message->getSender())
+        if (!$message->getSender()) {
             throw new \Exception("Sender is Required \n");
-        if (!$message->getPhone())
+        }
+        if (!$message->getPhone()) {
             throw new \Exception("Phone Number is Required \n");
-        if (!$message->getMessage())
+        }
+        if (!$message->getMessage()) {
             throw new \Exception("Message is Required \n");
+        }
     }
 }

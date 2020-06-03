@@ -77,6 +77,14 @@ var_dump($response);
 
 ```
 
+### Available Methods are:
+
+1.  sendSMS()
+2.  sendBatchSMS()
+3.  accountBalance()
+4.  accountTopUp()
+
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
