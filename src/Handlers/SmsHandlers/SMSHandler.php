@@ -17,8 +17,7 @@ trait SMSHandler
     {
         $uri = "$this->version/send-sms";
         try {
-            $message = [$sms];
-            return (new SMSHandlerImpl($this->token, $uri, $message))->process();
+            return (new SMSHandlerImpl($this->token, $uri, $sms))->process();
         } catch (\Exception $e) {
             return $e->getMessage();
         }
