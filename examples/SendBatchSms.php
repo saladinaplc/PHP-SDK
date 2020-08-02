@@ -18,7 +18,7 @@ use BongaTech\Api\Models\Sms;
     |sendSMS() takes in an SMS() Object.
     |
     */
-
+z
 $token = "Token_string"; //replace with your Token from the portal
 $version = "v1"; //DONT change unless you are using a different version
 $instance = new BongaTech($token, $version);

@@ -30,7 +30,7 @@ trait SMSHandler
     public function sendBatchSMS(Sms ...$messages){
         $uri = "$this->version/send-sms";
         try {
-            return (new SMSHandlerImpl($this->token, $uri, ...$messages))->process();
+            return (new SMSHandlerImpl($this->token, $uri, $messages))->process();
         } catch (\Exception $e) {
             return $e->getMessage();
         }
