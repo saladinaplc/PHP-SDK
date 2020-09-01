@@ -18,7 +18,6 @@ use BongaTech\Api\Models\Sms;
     |sendSMS() takes in an SMS() Object.
     |
     */
-z
 $token = "Token_string"; //replace with your Token from the portal
 $version = "v1"; //DONT change unless you are using a different version
 $instance = new BongaTech($token, $version);
@@ -40,5 +39,8 @@ $sms2 = new Sms("BizTxt", "0716079675", "Test Message 2", "102");
 
 //send Sms object
 $response = $instance->sendBatchSMS($sms1, $sms2);
+
+//invoke multiple
+//call_user_func_array https://www.php.net/manual/en/function.call-user-func-array.php
 
 var_dump($response);

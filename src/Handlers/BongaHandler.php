@@ -12,7 +12,8 @@ use GuzzleHttp\RequestOptions;
 
 abstract class BongaHandler
 {
-    const BASE_URL = "https://bulk.bongatech.co.ke/api/";
+    //const BASE_URL = "https://bulk.bongatech.co.ke/api/";
+    const BASE_URL = "http://127.0.0.1:8000/api/";
 
     const METHOD_POST = "sendPostRequest";
     const METHOD_GET = "sendGetRequest";
@@ -90,7 +91,8 @@ abstract class BongaHandler
             $results = $client->get(
                 self::BASE_URL . $this->uri,
                 [
-                    RequestOptions::HEADERS => $this->constructHeader()
+                    RequestOptions::HEADERS => $this->constructHeader(),
+                    RequestOptions::QUERY => $this->data
                 ]
             );
             return json_decode($results->getBody(), true);

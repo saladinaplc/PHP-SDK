@@ -27,7 +27,8 @@ trait SMSHandler
      * @param Sms ...$messages
      * @return mixed|string
      */
-    public function sendBatchSMS(Sms ...$messages){
+    public function sendBatchSMS(Sms ...$messages)
+    {
         $uri = "$this->version/send-sms";
         try {
             return (new SMSHandlerImpl($this->token, $uri, $messages))->process();
