@@ -12,7 +12,7 @@ use GuzzleHttp\RequestOptions;
 
 abstract class BongaHandler
 {
-    const BASE_URL = "https://bulk.bongatech.co.ke/api/";
+    const BASE_URL = "http://bulk.bongatech.com/api/";
     //const BASE_URL = "http://127.0.0.1:8000/api/";
 
     const METHOD_POST = "sendPostRequest";
